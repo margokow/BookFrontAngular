@@ -4,15 +4,18 @@ import { BookService } from '../../services/book.service';
 import { AuthorService } from '../../services/author.service';
 import Book from '../../models/book.model';
 import Author from '../../models/author.model';
+import { DetailAuthorComponent } from '../detail-author/detail-author.component';
 
 @Component({
   selector: 'app-detail-book',
   standalone: true,
-  imports: [],
+  imports: [DetailAuthorComponent],
   templateUrl: './detail-book.component.html',
   styleUrl: './detail-book.component.css'
 })
 export class DetailBookComponent {
+
+  @Input() author!: any
 
   detail!: Book
 
@@ -54,4 +57,10 @@ export class DetailBookComponent {
 
     this.setSubscribe(id)
   }
+
+  deleteBook(id: number): void {
+    this.bookService.deleteBook(id).subscribe(() => {
+      this.router.navigate(['/books']); // Rediriger vers la liste des livres ou une autre page après la suppression
+    });
+}
 }

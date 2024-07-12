@@ -4,6 +4,7 @@
       @if (book.author) {
       <h5 class="card-title">{{book.author.FirstName}} {{book.author.LastName}}</h5>
     }
+      <p class="card-text">{{book.coverText}}</p>
       <p class="card-text">{{book.comment}}</p>
       <a routerLink="/books/{{book.id}}" class="btn btn-primary">Voir détails</a>
     </div>

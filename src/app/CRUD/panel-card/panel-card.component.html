@@ -1,0 +1,13 @@
+  @if (book) {
+    <tr>
+      <th scope="row">{{book.id}}</th>
+      <td>{{book.title}}</td>
+      <td>{{book.author.firstName}} {{book.author.lastName}}</td>
+      <td>{{book.coverText}}</td>
+      <td>{{book.comment}}</td>
+      <td>
+        <a routerLink="/books/{{book.id}}"  class="btn btn-primary">Voir détails</a>
+        <button (click)="deleteBook(book.id)" class="btn btn-danger">Supprimer</button>
+      </td>
+    </tr>
+  }

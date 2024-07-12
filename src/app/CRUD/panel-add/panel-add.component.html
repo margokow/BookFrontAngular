@@ -1,0 +1,55 @@
+<h3 class="mt-4">Ajouter un livre</h3>
+
+<form [formGroup]="infoBook" (ngSubmit)="addBook()">
+  <div class="form-group">
+    <label>
+      Titre:
+      <input class="form-control" type="text" formControlName="title">
+    </label>
+    @if (submitted && infoBook.controls['title'].invalid) {
+    <div class="text-danger">
+      Le titre est requis
+    </div>
+  }
+  </div>
+
+  <!-- <div class="form-group">
+    <label>
+      Nom de l'auteur:
+      <input class="form-control" type="text" formControlName="nom_auteur">
+    </label>
+    @if (submitted && infoBook.controls['nom_auteur'].invalid) {
+    <div class="text-danger">
+      Le nom de l'auteur est requis
+    </div>
+  }
+  </div>
+
+  <div class="form-group">
+    <label>
+      Prénom de l'auteur:
+      <input class="form-control" type="text" formControlName="prenom_auteur">
+    </label>
+    @if (submitted && infoBook.controls['prenom_auteur'].invalid) {
+    <div class="text-danger">
+      Le prénom de l'auteur est requis
+    </div>
+  }
+  </div> -->
+
+  <div class="form-group">
+    <label>
+      CoverText:
+      <input class="form-control" type="text" formControlName="coverText">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Commentaire:
+      <input class="form-control" type="text" formControlName="comment">
+    </label>
+  </div>
+
+  <button class="btn btn-primary mt-3" type="submit">Ajouter un livre</button>
+</form>

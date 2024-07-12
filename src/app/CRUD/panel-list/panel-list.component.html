@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Auteur</th>
+      <th scope="col">CoverText</th>
+      <th scope="col">Commentaire</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (book of books; track $index) {
+
+      <tr>
+        <app-panel-card [book]="book"></app-panel-card>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -13,6 +13,7 @@ export class PanelListComponent {
 
   @Input() books: Book[] = [];
 
+
   getAuthor(book: Book) {
     return book.author;
   }

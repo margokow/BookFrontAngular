@@ -5,11 +5,12 @@ import Author from '../../models/author.model';
 import { BookService } from '../../services/book.service';
 import { AuthorService } from '../../services/author.service';
 import { PanelListComponent } from '../panel-list/panel-list.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-panel',
   standalone: true,
-  imports: [PanelListComponent],
+  imports: [PanelListComponent, RouterLink],
   templateUrl: './panel.component.html',
   styleUrl: './panel.component.css'
 })
@@ -28,13 +29,14 @@ export class PanelComponent {
 ngOnInit(): void {
   this.bookService.getBooks().subscribe((booksResponse) => {
     this.books = booksResponse;
-    console.log(booksResponse);
+    console.log('Books:', booksResponse);
 
     // this.associateBooksWithAuthors();
   });
 
   this.authorService.getAuthors().subscribe((authorsResponse) => {
     this.authors = authorsResponse;
+    console.log('Authors:', authorsResponse);
     // this.associateBooksWithAuthors();
   });
 }

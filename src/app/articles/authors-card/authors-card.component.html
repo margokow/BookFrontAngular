@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">{{author.FirstName}} {{author.LastName}}</h3>
+    @if (author) {
+    <!-- <h5 class="card-title">{{book.author.FirstName}} {{book.author.LastName}}</h5> -->
+  }
+    <a routerLink="/authors/{{author.id}}" class="btn btn-primary">Voir détails</a>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+@for (item of authors; track $index) {
+  <div class="col-md-3 m-1">
+    <app-authors-card [author]="item"></app-authors-card>
+  </div>
+}
+</div>
+</div>

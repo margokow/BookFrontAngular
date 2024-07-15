@@ -1,7 +1,7 @@
 <h3 class="mt-4">Ajouter un livre</h3>
 
 <form [formGroup]="infoBook" (ngSubmit)="addBook()">
-  <div class="form-group">
+  <div class="form-group m-2">
     <label>
       Titre:
       <input class="form-control" type="text" formControlName="title">
@@ -13,56 +13,34 @@
   }
   </div>
 
-  <!-- <div formGroupName="author">
-    <div class="form-group">
-      <label>
-        Prénom de l'auteur:
-        <input class="form-control" type="text" formControlName="FirstName" placeholder="Prénom de l'auteur">
-      </label>
-      <div class="text-danger">
-        @if (submitted && infoBook.get('author.Firstname')?.invalid) {
-          @if (!infoBook.get('author.FirstName')?.value) {
-          <div>
-          Le prénom de l'auteur est requis
-        </div>
-      }
-      }
-      </div>
-    </div>
+  <button class="btn btn-info m-2" type="button" (click)="showAuthorAddForm = !showAuthorAddForm">
+    {{ showAuthorAddForm ? 'Annuler l\'ajout de l\'auteur' : 'Ajouter un auteur' }}
+  </button>
 
-    <div class="form-group">
-      <label>
-        Nom de l'auteur:
-        <input class="form-control" type="text" formControlName="LastName" placeholder="Nom de l'auteur">
-      </label>
-      <div class="text-danger">
-        @if (submitted && infoBook.get('author.LastName')?.invalid) {
-          @if (!infoBook.get('author.LastName')?.value) {
-        <div>
-          Le nom de l'auteur est requis
-        </div>
-      }
-      }
-      </div>
-    </div>
-  </div> -->
+  <div class="m-2">
+    @if (showAuthorAddForm) {
+    <app-author-add (authorAdded)="onAuthorAdded($event)"></app-author-add>
+  }
+  </div>
 
 
-  <div class="form-group">
+  <div class="form-group m-2">
     <label>
       CoverText:
       <input class="form-control" type="text" formControlName="coverText">
     </label>
   </div>
 
-  <div class="form-group">
+  <div class="form-group m-2">
     <label>
       Commentaire:
       <input class="form-control" type="text" formControlName="comment">
     </label>
   </div>
 
-  <button class="btn btn-primary mt-3" type="submit">Ajouter un livre</button>
+  <button class="btn btn-primary m-3" type="submit">Ajouter un livre</button>
 </form>
 
+<div class="m-3">
 <a routerLink="/panel"  class="btn btn-secondary">Retourner au panel</a>
+</div>

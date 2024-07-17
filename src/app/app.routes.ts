@@ -8,6 +8,7 @@ import { DetailAuthorComponent } from './article/detail-author/detail-author.com
 import { PanelComponent } from './CRUD/panel/panel.component';
 import { PanelAddComponent } from './CRUD/panel-add/panel-add.component';
 import { AuthorsComponent } from './articles/authors/authors.component';
+import { PanelUpdateComponent } from './CRUD/panel-update/panel-update.component';
 
 export const routes: Routes = [
 
@@ -26,6 +27,8 @@ export const routes: Routes = [
   {path: 'panel', component: PanelComponent},
 
   {path: 'paneladd', component: PanelAddComponent},
+
+  {path: 'panelupdate/:id', component: PanelUpdateComponent},
 
 
 

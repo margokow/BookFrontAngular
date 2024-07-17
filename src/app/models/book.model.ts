@@ -5,5 +5,6 @@ export default interface Book {
   title: string;
   coverText: string;
   author: Author;
+  idAuthor: number;
   comment?: string;
 }

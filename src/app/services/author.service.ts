@@ -14,13 +14,13 @@ export class AuthorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private getAuthHeaders() {
-    return {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.authToken}`
-      })
-    };
-  }
+  // private getAuthHeaders() {
+  //   return {
+  //     headers: new HttpHeaders({
+  //       'Authorization': `Bearer ${this.authToken}`
+  //     })
+  //   };
+  // }
 
   getAuthors(): Observable<Author[]>{
     return this.httpClient.get<Author[]>(`${this.apiUrl}`);
@@ -38,7 +38,7 @@ export class AuthorService {
     return this.httpClient.put<Author>(`${this.apiUrl}/${author.id}`, author);
   }
   deleteAuthor(id: number): Observable<Author>{
-    return this.httpClient.delete<Author>(`${this.apiUrl}/${id}`, this.getAuthHeaders());
+    return this.httpClient.delete<Author>(`${this.apiUrl}/${id}`);
   }
 
 }

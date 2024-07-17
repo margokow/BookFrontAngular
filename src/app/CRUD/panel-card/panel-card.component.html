@@ -1,6 +1,7 @@
   @if (book) {
 
         <a routerLink="/books/{{book.id}}"  class="btn btn-primary">Voir détails</a>
+        <a routerLink="/panelupdate/{{book.id}}"  class="btn btn-warning">Modifier le livre</a>
         <button (click)="deleteBook(book.id)" class="btn btn-danger">Supprimer</button>
 
   }

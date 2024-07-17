@@ -30,6 +30,7 @@ export class PanelUpdateComponent implements OnInit {
     private router: Router
   ) {
     this.infoBook = this.formBuilder.group({
+      id: [, Validators.required],
       title: ['', Validators.required],
       idAuthor: [null, Validators.required],
       coverText: [''],
@@ -53,6 +54,7 @@ export class PanelUpdateComponent implements OnInit {
     if (this.bookId) {
       this.bookService.getBook(this.bookId).subscribe(book => {
         this.infoBook.patchValue({
+          id: book.id,
           title: book.title,
           idAuthor: book.idAuthor,
           coverText: book.coverText,
@@ -67,13 +69,21 @@ export class PanelUpdateComponent implements OnInit {
 
       const authorId = this.infoBook.controls['idAuthor'].value;
       this.book = this.infoBook.value;
-      console.log(this.book);
 
-      this.book.idAuthor = authorId;
+      this.authorService.getAuthor(+authorId).subscribe(data => {
+        this.book.idAuthor = data.id
+        this.book.author = data
 
-      this.bookService.updateBook(this.book).subscribe(() => {
-        this.router.navigate(['/panel']);
-      })}
+
+        this.bookService.updateBook(this.book).subscribe(() => {
+          this.router.navigate(['/panel']);
+        })
+      });
+
+
+
+
+    }
 
   onAuthorAdded(authorId: number) {
     this.infoBook.patchValue({ idAuthor: authorId });

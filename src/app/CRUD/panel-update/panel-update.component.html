@@ -19,7 +19,7 @@
       <select id="authorId" formControlName="idAuthor">
       <option class='dropdown-item'value=""></option>
       @for (author of authors; track $index) {
-        <option class="dropdown-item" value="author.id">{{ author.lastName }} {{ author.firstName }}</option>
+        <option class="dropdown-item" [value]="author.id">{{ author.lastName }} {{ author.firstName }}</option>
       }
       </select>
     </div>

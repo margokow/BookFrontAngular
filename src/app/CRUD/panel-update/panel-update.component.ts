@@ -15,76 +15,69 @@ import { AuthorAddComponent } from '../author-add/author-add.component';
   styleUrl: './panel-update.component.css'
 })
 export class PanelUpdateComponent implements OnInit {
-    infoBook: FormGroup;
-    authors: Author[] = [];
-    showAuthorAddForm = false;
-    submitted = false;
-    bookId?: number;
+  infoBook: FormGroup;
+  authors: Author[] = [];
+  showAuthorAddForm = false;
+  submitted = false;
+  bookId?: number;
+  book!: Book;
 
-    constructor(
-      private formBuilder: FormBuilder,
-      private bookService: BookService,
-      private authorService: AuthorService,
-      private route: ActivatedRoute,
-      private router: Router
-    ) {
-      this.infoBook = this.formBuilder.group({
-        title: ['', Validators.required],
-        author: [null, Validators.required],
-        coverText: [''],
-        comment: [''],
-      });
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    private bookService: BookService,
+    private authorService: AuthorService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.infoBook = this.formBuilder.group({
+      title: ['', Validators.required],
+      idAuthor: [null, Validators.required],
+      coverText: [''],
+      comment: [''],
+    });
+  }
 
-    ngOnInit() {
-      this.bookId = +this.route.snapshot.paramMap.get('id')!;
-      this.loadAuthors();
-      this.loadBook();
-    }
+  ngOnInit() {
+    this.bookId = +this.route.snapshot.paramMap.get('id')!;
+    this.loadAuthors();
+    this.loadBook();
+  }
 
-    loadAuthors() {
-      this.authorService.getAuthors().subscribe(authors => {
-        this.authors = authors;
-      });
-    }
+  loadAuthors() {
+    this.authorService.getAuthors().subscribe(authors => {
+      this.authors = authors;
+    });
+  }
 
-    loadBook() {
-      if (this.bookId) {
-        this.bookService.getBook(this.bookId).subscribe(book => {
-          this.infoBook.patchValue({
-            title: book.title,
-            author: book.author,
-            coverText: book.coverText,
-            comment: book.comment
-          });
+  loadBook() {
+    if (this.bookId) {
+      this.bookService.getBook(this.bookId).subscribe(book => {
+        this.infoBook.patchValue({
+          title: book.title,
+          idAuthor: book.idAuthor,
+          coverText: book.coverText,
+          comment: book.comment,
         });
-      }
-    }
-
-    updateBook() {
-      this.submitted = true;
-      if (this.infoBook.invalid) {
-        return;
-      }
-
-      const book: Book = {
-        id: this.bookId!,
-        ...this.infoBook.value,
-        author: {
-          id: this.infoBook.value.author.id,
-          firstName: this.infoBook.value.author.firstName,
-          lastName: this.infoBook.value.author.lastName
-        }
-      };
-
-      this.bookService.updateBook(book).subscribe();
-    }
-
-    onAuthorAdded(authorId: number) {
-      this.authorService.getAuthor(authorId).subscribe(author => {
-        this.infoBook.patchValue({ author });
-        this.showAuthorAddForm = false;
-        this.loadAuthors();
       });
     }
   }
+
+  updateBook() {
+      this.submitted = true;
+
+      const authorId = this.infoBook.controls['idAuthor'].value;
+      this.book = this.infoBook.value;
+      console.log(this.book);
+
+      this.book.idAuthor = authorId;
+
+      this.bookService.updateBook(this.book).subscribe(() => {
+        this.router.navigate(['/panel']);
+      })}
+
+  onAuthorAdded(authorId: number) {
+    this.infoBook.patchValue({ idAuthor: authorId });
+    this.showAuthorAddForm = false;
+    this.loadAuthors();
+  }
+}

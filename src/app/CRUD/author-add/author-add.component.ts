@@ -19,8 +19,8 @@ export class AuthorAddComponent {
     private authorService: AuthorService
   ) {
     this.authorForm = this.fb.group({
-      LastName: [''],
-      FirstName: [''],
+      lastName: [''],
+      firstName: [''],
     });
   }
 

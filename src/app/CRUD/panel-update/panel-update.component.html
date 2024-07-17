@@ -16,10 +16,10 @@
 <div class="form-group m-2">
   <label class="form-label m-2" for="authorId"></label>
     <div class="dropdown m-2">
-      <select id="authorId" formControlName="author">
+      <select id="authorId" formControlName="idAuthor">
       <option class='dropdown-item'value=""></option>
       @for (author of authors; track $index) {
-        <option class="dropdown-item" value="author.id">{{ author.LastName }} {{ author.FirstName }}</option>
+        <option class="dropdown-item" value="author.id">{{ author.lastName }} {{ author.firstName }}</option>
       }
       </select>
     </div>

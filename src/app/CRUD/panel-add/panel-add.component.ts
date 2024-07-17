@@ -59,7 +59,6 @@ export class PanelAddComponent implements OnInit {
     const authorId = this.infoBook.controls["idAuthor"].value
 
     this.book = this.infoBook.value
-    this.book = authorId
     console.log(this.book);
 
 

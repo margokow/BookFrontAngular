@@ -9,6 +9,8 @@ import { PanelComponent } from './CRUD/panel/panel.component';
 import { PanelAddComponent } from './CRUD/panel-add/panel-add.component';
 import { AuthorsComponent } from './articles/authors/authors.component';
 import { PanelUpdateComponent } from './CRUD/panel-update/panel-update.component';
+import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
 
@@ -24,11 +26,13 @@ export const routes: Routes = [
 
   {path: 'authors', component: AuthorsComponent},
 
-  {path: 'panel', component: PanelComponent},
+  {path: 'panel', component: PanelComponent, canActivate:[authGuard]},
 
-  {path: 'paneladd', component: PanelAddComponent},
+  {path: 'paneladd', component: PanelAddComponent, canActivate:[authGuard]},
 
-  {path: 'panelupdate/:id', component: PanelUpdateComponent},
+  {path: 'panelupdate/:id', component: PanelUpdateComponent, canActivate:[authGuard]},
+
+  {path: 'login', component: LoginFormComponent},
 
 
 

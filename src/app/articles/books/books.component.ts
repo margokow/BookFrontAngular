@@ -1,10 +1,12 @@
 import { AuthorService } from './../../services/author.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import Book from '../../models/book.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { BooksListComponent } from '../books-list/books-list.component';
 import Author from '../../models/author.model';
+import { authGuard } from '../../guards/auth.guard';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-books',
@@ -17,6 +19,8 @@ export class BooksComponent implements OnInit {
 
   books: Book[] = [];
   authors: Author[] = [];
+
+  isAdmin = inject(AuthService).getRoles("ROLE_ADMIN")
 
   constructor(
     private bookService: BookService,

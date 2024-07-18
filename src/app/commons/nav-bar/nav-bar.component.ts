@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,4 +11,9 @@ import { RouterLink } from '@angular/router';
 })
 export class NavBarComponent {
 
+  tokenService = inject(TokenService)
+  logout(){
+    // sessionStorage.clear() ---> vide la session
+    this.tokenService.clearToken() // va supprimer uniquement le token
+  }
 }

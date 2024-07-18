@@ -1,2 +1,6 @@
 <h2>Liste des livres</h2>
 <app-books-list [booksWithAuthors] = "books"></app-books-list>
+
+@if(isAdmin) {
+<button>Panel</button>
+}
